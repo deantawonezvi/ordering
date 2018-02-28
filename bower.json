@@ -20,6 +20,7 @@
   "dependencies": {
     "uikit": "^2.27.5",
     "bs-enhance": "^1.0.3",
-    "font-awesome": "^5.0.7"
+    "font-awesome": "^5.0.7",
+    "angular": "angularjs#^1.6.9"
   }
 }

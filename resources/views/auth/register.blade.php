@@ -30,7 +30,7 @@
 
                             <div class="col-md-12">
                                 <input id="mobile" type="text" placeholder="Cellphone Number"
-                                       class="form-control{{ $errors->has('mobile') ? ' is-invalid' : '' }}" name="mobil"
+                                       class="form-control{{ $errors->has('mobile') ? ' is-invalid' : '' }}" name="mobile"
                                        value="{{ old('mobile') }}" required>
 
                                 @if ($errors->has('mobile'))

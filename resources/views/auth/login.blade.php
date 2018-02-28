@@ -7,6 +7,7 @@
                 <div class="card-large card-body white shadow-1">
                     <h2>Login</h2>
                     <br>
+                    @include('partials.session')
 
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
