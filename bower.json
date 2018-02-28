@@ -1,0 +1,25 @@
+{
+  "name": "ordering",
+  "description": "Ordering Application",
+  "main": "",
+  "authors": [
+    "deant <deant@getcash.co.zw>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "Ordering"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "uikit": "^2.27.5",
+    "bs-enhance": "^1.0.3",
+    "font-awesome": "^5.0.7"
+  }
+}
