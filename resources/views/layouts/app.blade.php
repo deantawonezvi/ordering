@@ -14,6 +14,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('lib/bs-enhance/bs-enhance.min.css') }}" rel="stylesheet">
     <link href="{{ asset('lib/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    @yield('styles')
+
 
 </head>
 <body>

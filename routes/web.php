@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/register/confirm/{token}', 'Auth\RegisterController@confirmEmail');
+Route::post('/register/mobile', 'DetailsController@updateMobile');
 
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -27,7 +27,7 @@ class SocialAccountsService
                 $user = User::create([
                     'email'    => $providerUser->getEmail(),
                     'name'     => $providerUser->getName(),
-                    'mobile'   => ' ',
+                    'mobile'   => 0,
                     'password' => Str::random(20)]);
             }
             LinkedSocialAccount::create([

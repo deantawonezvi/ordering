@@ -11,7 +11,6 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -46,19 +45,17 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data){
-        return Validator::make($data, [
-            'name'     => 'required|string|max:255',
-            'mobile'   => 'required|string|max:255',
-            'email'    => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+    public function confirmEmail($token){
+
+        try {
+            $user = User::whereToken($token)->firstOrFail();
+            $user->hasVerified();
+            Mail::to($user->email)->send(new EmailConfirmed($user));
+        } catch (ModelNotFoundException $e) {
+            return redirect('login');
+        }
+
+        return redirect('login')->with('status', 'Your email is verified. Please login');
     }
 
     /**
@@ -81,18 +78,19 @@ class RegisterController extends Controller
 
     }
 
-    public function confirmEmail($token)
-    {
-
-        try {
-            $user = User::whereToken($token)->firstOrFail();
-            $user->hasVerified();
-            Mail::to($user->email)->send(new EmailConfirmed($user));
-        } catch (ModelNotFoundException $e) {
-            return redirect('login');
-        }
-
-        return redirect('login')->with('status', 'Your email is verified. Please login');
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data){
+        return Validator::make($data, [
+            'name'     => 'required|string|max:255',
+            'mobile'   => 'required|numeric|min:10',
+            'email'    => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
     }
 
 }
